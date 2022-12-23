@@ -73,6 +73,10 @@ namespace NumberTheory
             return retVal;
         }
 
+        public List<int> GetJugglers()
+        {
+            return GetJugglers(theNumber);
+        }
         public int GetAliquotSum()
         {
             return GetAliquotSum(theNumber);
@@ -139,10 +143,7 @@ namespace NumberTheory
 
 
 
-        public List<int> GetJugglers()
-        {
-            return GetJugglers(theNumber);
-        }
+        
 
 
 
