@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LoanAmortization"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <sys:Double x:Key="ImageHeight">173</sys:Double>
+        <sys:Double x:Key="FontSizeDefault">16</sys:Double>
+        <sys:String x:Key="DefaultPadding">"0,0,0,0"</sys:String>
     </Application.Resources>
 </Application>
