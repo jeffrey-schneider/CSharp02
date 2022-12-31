@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoanAmortization
 {
-    class LoanPayments
+    public class LoanPayments
     {
         int loanNumber;         //Link to the overall loan information object.
         int paymentNumber;
