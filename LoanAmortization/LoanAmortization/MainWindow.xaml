@@ -14,14 +14,14 @@
                 <MenuItem Header="_New" Click="ClearForm_Click"></MenuItem>
                 <MenuItem Header="_Print" Click="PrintForm_Click"></MenuItem>
                 <Separator/>
-                <MenuItem Header="E_xit" Click="mnuExit_Click"/>                
+                <MenuItem Header="E_xit" Click="MnuExit_Click"/>                
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="_Font" Click="Font_Update_Click"/>
                 <MenuItem Header="_Color"/>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_About" Click="mnuAbout_Click"/>
+                <MenuItem Header="_About" Click="MnuAbout_Click"/>
             </MenuItem>
         </Menu>
         <DockPanel>
@@ -99,7 +99,7 @@
                 Background="LightCyan"
                 BorderBrush="Black"
                 BorderThickness="1"
-                ClickMode="Press" Click="btnSubmit_Click"/>
+                ClickMode="Press" Click="BtnSubmit_Click"/>
                         </Grid>
                         <TextBlock Name="txtCustomerInfo" 
                    FontSize="14" 
@@ -160,6 +160,8 @@
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="5px"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
@@ -172,12 +174,16 @@
                                 <TextBlock Grid.Column="4" Grid.Row="0" Background="LightGreen" VerticalAlignment="top" HorizontalAlignment="Center" Width="100" FontSize="14" FontWeight="Bold" Text="Begin Date"/>
                                 <TextBlock Grid.Column="5" Grid.Row="0" Background="LightGreen" VerticalAlignment="top" HorizontalAlignment="Center" Width="100" FontSize="14" FontWeight="Bold" Text="End Date"/>
                                 <TextBlock Grid.Column="6" Grid.Row="0" Background="Aquamarine" VerticalAlignment="top" HorizontalAlignment="Center" Width="100" FontSize="14" FontWeight="Bold" Text="Monthly Pmt"/>
-                                <TextBox x:Name="showAmount" IsReadOnly="True" Grid.Column="1" Grid.Row="1" Background="Pink" VerticalAlignment="Top"  Width="100" FontSize= "14" FontWeight="Bold"/>
-                                <TextBox x:Name="showDuration" IsReadOnly="True" Grid.Column="2" Grid.Row="1" Background="Bisque" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold"/>
-                                <TextBox x:Name="showRate" IsReadOnly="True" Grid.Column="3" Grid.Row="1" Background="LightBlue" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
-                                <TextBox x:Name="showDate" IsReadOnly="True" Grid.Column="4" Grid.Row="1" Background="LightGreen" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
-                                <TextBox x:Name="showEndDate" IsReadOnly="True" Grid.Column="5" Grid.Row="1" Background="Khaki" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
-                                <TextBox x:Name="showPayment" IsReadOnly="True" Grid.Column="6" Grid.Row="1" Background="Aquamarine" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBlock Grid.Column="7" Grid.Row="0" Background="BurlyWood" VerticalAlignment="top" HorizontalAlignment="Center" Width="100" FontSize="14" FontWeight="Bold" Text="Total Pmts"/>
+                                <TextBlock Grid.Column="8" Grid.Row="0" Background="LawnGreen" VerticalAlignment="top" HorizontalAlignment="Center" Width="100" FontSize="14" FontWeight="Bold" Text="Total Interest"/>
+                                <TextBox x:Name="showAmount"   IsReadOnly="True" Grid.Column="1" Grid.Row="1" Background="Pink"       VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold"/>
+                                <TextBox x:Name="showDuration" IsReadOnly="True" Grid.Column="2" Grid.Row="1" Background="Bisque"     VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold"/>
+                                <TextBox x:Name="showRate"     IsReadOnly="True" Grid.Column="3" Grid.Row="1" Background="LightBlue"  VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBox x:Name="showDate"     IsReadOnly="True" Grid.Column="4" Grid.Row="1" Background="LightGreen" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBox x:Name="showEndDate"  IsReadOnly="True" Grid.Column="5" Grid.Row="1" Background="Khaki"      VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBox x:Name="showPayment"  IsReadOnly="True" Grid.Column="6" Grid.Row="1" Background="Aquamarine" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBox x:Name="showTotalOfPayment" IsReadOnly="True" Grid.Column="7" Grid.Row="1" Background="BurlyWood" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
+                                <TextBox x:Name="showTotalOfInterest" IsReadOnly="True" Grid.Column="8" Grid.Row="1" Background="LawnGreen" VerticalAlignment="Top" Width="100" FontSize= "14" FontWeight="Bold" />
                             </Grid>
                             
                             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"     FontSize="14" FontWeight="Bold"  Padding="20,0,20,0" Background="Pink" Text="Loan Amount"/>
@@ -200,9 +206,9 @@
                                      Margin="20,0,20,0" Background="Khaki"   
                                      IsReadOnly="True"/>
                             
-                            <Button x:Name="btnCalculate" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"
+                            <Button x:Name="BtnCalculate" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"
                                         VerticalAlignment="Center" FontSize="14" FontWeight="Bold"  Margin="20,0,20,0"
-                                        Content="_Calculate" Click="btnCalculate_Click"/>
+                                        Content="_Calculate" Click="BtnCalculate_Click"/>
                         
                         
                         <DataGrid x:Name="dgSimple" Grid.Column="1"

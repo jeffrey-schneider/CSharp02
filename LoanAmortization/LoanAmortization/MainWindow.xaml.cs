@@ -16,6 +16,8 @@ namespace LoanAmortization
         public static Borrower borrower = new Borrower();
         public static LoanInfo loanInfo = new LoanInfo();
         public static ObservableCollection<LoanPayments> theList = new ObservableCollection<LoanPayments>();
+        public static double totalPaymentAmount;
+        public static double totalInterestAmount;
         Random rnd = new Random();
 
         public MainWindow()
@@ -36,12 +38,12 @@ namespace LoanAmortization
         }
 
 
-        private void mnuAbout_Click(object sender, RoutedEventArgs e)
+        private void MnuAbout_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.MessageBox.Show("\nWPFLoanAmortization\n\nVersion 1.1.0");
         }
 
-        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        private void MnuExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -70,7 +72,7 @@ namespace LoanAmortization
             dgSimple.ItemsSource = null;
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if (borrower != null)
             {
@@ -97,24 +99,21 @@ namespace LoanAmortization
             System.Windows.Forms.MessageBox.Show("Test");
         }
 
-        private void btnCalculate_Click(object sender, RoutedEventArgs e)
+        private void BtnCalculate_Click(object sender, RoutedEventArgs e)
         {
             int loanNo = rnd.Next();
-            double principal;
-            int numberOfPayments;
-            double annualRate;
 
-            if (!double.TryParse(txtAmount.Text, out principal))
+            if (!double.TryParse(txtAmount.Text, out double principal))
             {
                 System.Windows.Forms.MessageBox.Show("Error parsing amount");
                 txtAmount.Focus();
             }
-            if (!int.TryParse(txtDuration.Text, out numberOfPayments))
+            if (!int.TryParse(txtDuration.Text, out int numberOfPayments))
             {
                 System.Windows.Forms.MessageBox.Show("Error parsing duration");
                 txtDuration.Focus();
             }
-            if (!double.TryParse(txtInterestRate.Text, out annualRate))
+            if (!double.TryParse(txtInterestRate.Text, out double annualRate))
             {
                 System.Windows.Forms.MessageBox.Show("Error parsing interest rate");
                 txtInterestRate.Focus();
@@ -128,7 +127,7 @@ namespace LoanAmortization
                 annualRate /= 100;
                 txtInterestRate.Text = annualRate.ToString();
             }
-            double monthlyPayment = calculateMonthlyPayment(principal, numberOfPayments, annualRate);
+            double monthlyPayment = CalculateMonthlyPayment(principal, numberOfPayments, annualRate);
             double interestPaid = 0.0;
             double principalPaid = 0.0;
             double newBalance = 0.0;
@@ -138,7 +137,7 @@ namespace LoanAmortization
             // Is this a new loan or an update of previous submission?
             if (loanInfo is null)
             {
-                LoanInfo loanInfo = new LoanInfo(loanNo, principal, numberOfPayments, annualRate, parsedDate);
+                LoanInfo loanInfo = new LoanInfo(loanNo, principal, numberOfPayments, annualRate, parsedDate, monthlyPayment);
             }
             else
             {
@@ -147,7 +146,10 @@ namespace LoanAmortization
                 loanInfo.Duration = numberOfPayments;
                 loanInfo.InterestRate = annualRate;
                 loanInfo.BeginDate = parsedDate;
+                loanInfo.MonthlyPayment = monthlyPayment;
                 theList.Clear();
+                
+                totalPaymentAmount = 0.0;
             }
 
             showAmount.Text = loanInfo.Amount.ToString();
@@ -155,6 +157,8 @@ namespace LoanAmortization
             showRate.Text = loanInfo.InterestRate.ToString();
             showDate.Text = loanInfo.BeginDate.ToString("MM/dd/yyyy");
             showEndDate.Text = loanInfo.EndDate.ToString("MM/dd/yyyy");
+            
+
             txtEndDate.Text = loanInfo.EndDate.ToString("MM/dd/yyyy");
 
             for (int counter = 1; counter <= numberOfPayments; counter++)
@@ -164,11 +168,15 @@ namespace LoanAmortization
                 newBalance = Math.Round((principal - principalPaid), 2, MidpointRounding.ToEven);
 
                 theList.Add(new LoanPayments(loanNo, counter, principal, monthlyPayment, interestPaid, principalPaid, newBalance, parsedDate.AddMonths(counter - 1)));
-
+                totalInterestAmount += interestPaid;
+                totalPaymentAmount += monthlyPayment;
                 principal = newBalance;
             }
             dgSimple.ItemsSource = theList;
-
+            loanInfo.TotalPaymentAmount = totalPaymentAmount;
+            loanInfo.TotalInterestAmount = totalInterestAmount;
+            showTotalOfPayment.Text = loanInfo.TotalPaymentAmount.ToString();
+            showTotalOfInterest.Text = loanInfo.TotalInterestAmount.ToString();
 
 
         }
@@ -188,9 +196,11 @@ namespace LoanAmortization
 
         private void Font_Update_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FontDialog fontDialog = new System.Windows.Forms.FontDialog();
-            fontDialog.MaxSize = 40;
-            fontDialog.MinSize = 8;
+            System.Windows.Forms.FontDialog fontDialog = new System.Windows.Forms.FontDialog
+            {
+                MaxSize = 40,
+                MinSize = 8
+            };
 
             if (fontDialog.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
             {
@@ -241,7 +251,7 @@ namespace LoanAmortization
 
    
 
-        public static double calculateMonthlyPayment(double loanAmount, int term, double annualRate)
+        public static double CalculateMonthlyPayment(double loanAmount, int term, double annualRate)
         {
             if(annualRate > 1)
             {

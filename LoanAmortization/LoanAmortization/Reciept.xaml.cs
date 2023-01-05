@@ -23,6 +23,11 @@ namespace LoanAmortization
                 showRate.Text = MainWindow.loanInfo.InterestRate.ToString();
                 showDate.Text = MainWindow.loanInfo.BeginDate.ToString("MM/dd/yyyy");
                 showEndDate.Text = MainWindow.loanInfo.EndDate.ToString("MM/dd/yyyy");
+                showPayment.Text = MainWindow.loanInfo.MonthlyPayment.ToString();
+                showTotalOfPayment.Text = MainWindow.loanInfo.TotalPaymentAmount.ToString();
+                showTotalOfInterest.Text = MainWindow.loanInfo.TotalInterestAmount.ToString();
+                System.Windows.Forms.MessageBox.Show(MainWindow.totalInterestAmount.ToString() + Environment.NewLine + 
+                    MainWindow.totalPaymentAmount.ToString());
             }
 
             if(MainWindow.theList != null)

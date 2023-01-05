@@ -35,10 +35,14 @@
                    FontWeight="Bold"
                    Grid.ColumnSpan="2"
                    FontSize="24" Margin="10,10,10,10"/>
+        
+        
 
 
         <Grid  Grid.Row="2" Grid.Column="1" >
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -54,14 +58,19 @@
         <TextBlock Grid.Column="1" Grid.Row="0" Background="Bisque"     VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Duration"/>
         <TextBlock Grid.Column="2" Grid.Row="0" Background="LightBlue"  VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Interest Rate"/>
         <TextBlock Grid.Column="3" Grid.Row="0" Background="LightGreen" VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Begin Date"/>
-        <TextBlock Grid.Column="4" Grid.Row="0" Background="Khaki" VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="End Date"/>
+        <TextBlock Grid.Column="4" Grid.Row="0" Background="Khaki"      VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="End Date"/>
         <TextBlock Grid.Column="5" Grid.Row="0" Background="Aquamarine" VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Monthly Pmt"/>
-        <TextBox x:Name="showAmount"   IsReadOnly="True" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Background="Pink"       VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold"/>
-        <TextBox x:Name="showDuration" IsReadOnly="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Background="Bisque"     VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold"/>
-        <TextBox x:Name="showRate"     IsReadOnly="True" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Background="LightBlue"  VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
-        <TextBox x:Name="showDate"     IsReadOnly="True" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Background="LightGreen" VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
-        <TextBox x:Name="showEndDate"  IsReadOnly="True" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" Background="Khaki"      VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
-        <TextBox x:Name="showPayment"  IsReadOnly="True" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" Background="Aquamarine" VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBlock Grid.Column="6" Grid.Row="0" Background="BurlyWood" VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Total Pmts"/>
+        <TextBlock Grid.Column="7" Grid.Row="0" Background="LawnGreen" VerticalAlignment="top" HorizontalAlignment="Center"  FontSize="14" FontWeight="Bold" Text="Total Interest"/>
+            
+        <TextBox x:Name="showAmount"           IsReadOnly="True" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Background="Pink"       VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold"/>
+        <TextBox x:Name="showDuration"         IsReadOnly="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Background="Bisque"     VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold"/>
+        <TextBox x:Name="showRate"             IsReadOnly="True" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Background="LightBlue"  VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBox x:Name="showDate"             IsReadOnly="True" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Background="LightGreen" VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBox x:Name="showEndDate"          IsReadOnly="True" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" Background="Khaki"      VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBox x:Name="showPayment"          IsReadOnly="True" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" Background="Aquamarine" VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBox x:Name="showTotalOfPayment"   IsReadOnly="True" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Center" Background="BurlyWood"  VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
+        <TextBox x:Name="showTotalOfInterest"  IsReadOnly="True" Grid.Column="7" Grid.Row="1" HorizontalAlignment="Center" Background="LawnGreen"  VerticalAlignment="Top"  FontSize= "14" FontWeight="Bold" />
         </Grid>
         <DataGrid x:Name="dgReciept" Grid.Column="1"
                                       Grid.Row="3"
